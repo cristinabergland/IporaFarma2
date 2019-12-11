@@ -90,6 +90,49 @@ public class MedicamentosController {
         
         return new ResponseEntity(produtos, HttpStatus.OK);
     }
+        /*novo metodo get para web */ 
+        
+        
+        @RequestMapping(method = RequestMethod.GET, value = "/adminAut/consultarproduto", produces = MediaType.APPLICATION_JSON_VALUE)
+        public ResponseEntity<Medicamentos> ConsultarPorNomeOuPrincipioAtivoWeb(String nome, String principioAtivo,@RequestHeader HttpHeaders headers){
+            
+            System.out.println("Método Web");
+            System.out.println("Nome: "+nome);
+            System.out.println("Princ. "+principioAtivo);
+            
+         Farmacia farmacia;
+        try{
+            
+            farmacia = farmaciaService.buscaFarmaciaToken(headers);
+            
+            System.out.println("Farmácia "+farmacia.getNome());
+        }catch(Exception ex) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }   
+        List<Medicamentos> produtos = produtoService.ConsultarPorNomeOuPrincipioAtivoWeb(nome, principioAtivo, farmacia);
+        
+        return new ResponseEntity(produtos, HttpStatus.OK);
+    }
+        
+      
+        
+       @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adminAut/ativarproduto")
+    public ResponseEntity ativarMedicamento(@RequestBody Medicamentos medicamento,@RequestHeader HttpHeaders headers){
+        
+        
+        Farmacia farmacia;
+        try{
+            
+            farmacia = farmaciaService.buscaFarmaciaToken(headers);
+            
+        }catch(Exception ex) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        produtoService.alterarMedicamento(medicamento);
+        
+        return new ResponseEntity(HttpStatus.OK);
+    }   
     
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adminAut/produto")
     public ResponseEntity editaProduto(@RequestBody Medicamentos produto, @RequestHeader HttpHeaders headers){
@@ -118,23 +161,7 @@ public class MedicamentosController {
         return new ResponseEntity(HttpStatus.OK);
     } 
     
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adminAut/ativarproduto")
-    public ResponseEntity ativarMedicamento(@RequestBody Medicamentos medicamento,@RequestHeader HttpHeaders headers){
-        
-        
-        Farmacia farmacia;
-        try{
-            
-            farmacia = farmaciaService.buscaFarmaciaToken(headers);
-            
-        }catch(Exception ex) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        
-        produtoService.alterarMedicamento(medicamento);
-        
-        return new ResponseEntity(HttpStatus.OK);
-    } 
+   
     
     @RequestMapping(method = RequestMethod.DELETE,consumes = MediaType.APPLICATION_JSON_VALUE, value = "/adminAut/produto/{id}")
     public ResponseEntity excluirProduto(@PathVariable Long id, @RequestHeader HttpHeaders headers){

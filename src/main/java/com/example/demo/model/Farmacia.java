@@ -36,7 +36,7 @@ public class Farmacia implements Serializable{
     private String email;
     private Date removedAt;
     // Nova coluna para o banco, usado para marcar se a farmacia está ativa ou não
-    //private int ativo = 1;
+    
     
  
     
@@ -112,7 +112,7 @@ public class Farmacia implements Serializable{
     }
 
    
-    
+   
     @Column(name = "removed_at")
     public Date getRemovedAt() {
         return removedAt;
@@ -122,7 +122,7 @@ public class Farmacia implements Serializable{
         this.removedAt = removedAt;
     }
      
-     
+  
      
     
 

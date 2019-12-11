@@ -1,6 +1,7 @@
 
 package com.example.demo.service;
 
+import com.example.demo.model.Farmacia;
 import com.example.demo.model.Medicamentos;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,16 @@ public class MedicamentosService {
         return produtoRepository.findByNomeOrPrincipioAtivoOrderByPrecoAsc(nome, principioAtivo);
         
     }
+    /*novo metodo web */   
+
+    public List<Medicamentos> ConsultarPorNomeOuPrincipioAtivoWeb(String nome, String principioAtivo, Farmacia farmacia){
+        
+
+       return produtoRepository.MedicamentosWeb(nome, principioAtivo,farmacia.getId());
+        
+    }
     
     
-     
      
      
 }
