@@ -77,12 +77,23 @@ public class MedicamentosController {
         return new ResponseEntity(produto, HttpStatus.OK);
     }
     
+    
+    
+    
+    
+    
     @RequestMapping(method = RequestMethod.GET, value = "/produto", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Medicamentos> mostrarTodosProduto(){
         List<Medicamentos> produtos = produtoService.buscaTodosProdutos();
         
         return new ResponseEntity(produtos, HttpStatus.OK);
     }
+    
+    
+    
+    
+    
+    
     
     @RequestMapping(method = RequestMethod.GET, value = "/menor/produto", produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<Medicamentos> ordenarPorMenorPreco(String nome, String principioAtivo){

@@ -16,6 +16,10 @@ import org.yuequan.jpa.soft.delete.repository.SoftDelete;
  */
 @SoftDelete
 public interface MedicamentosRepository extends JpaRepository<Medicamentos, Long> {
+    
+   /* @Query("select m from Medicamentos m where " 
+   + "m.farmacia.id= :idfarmacia  AND "
+   + "m.nome= :nome OR m.principioAtivo= :principioAtivo" )       */ 
     public List<Medicamentos> findByCategoria(Categoria categoria);
     
    

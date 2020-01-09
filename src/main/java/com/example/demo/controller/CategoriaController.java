@@ -57,6 +57,12 @@ public class CategoriaController {
        categoriaService.excluirCategoria(id);
        
        return new ResponseEntity(HttpStatus.OK);
+       
+       
+       
+       
+       
+       
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/categoria", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -90,6 +96,9 @@ public class CategoriaController {
         return new ResponseEntity(HttpStatus.OK);
     }
     
+    
+    
+    
     // Busca produto por categoria
     @RequestMapping(method = RequestMethod.GET, value = "/categoria/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity <List<Medicamentos>> mostraCategoria(@PathVariable Long id) {
@@ -109,6 +118,10 @@ public class CategoriaController {
     }
     
 
+    
+    
+    
+    
     @RequestMapping(method = RequestMethod.GET, value = "/categoria", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List <Categoria>> mostraTodasCategorias(){
     
